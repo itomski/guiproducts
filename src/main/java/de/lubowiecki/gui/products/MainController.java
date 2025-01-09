@@ -3,10 +3,7 @@ package de.lubowiecki.gui.products;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 
 import java.io.*;
@@ -40,6 +37,9 @@ public class MainController implements Initializable {
     @FXML
     private TextField price;
 
+    @FXML
+    private Button editBtn;
+
     // Hier werden die Daten verwaltet
     private List<Product> products;
 
@@ -50,6 +50,8 @@ public class MainController implements Initializable {
         try {
             if(old) {
                 updateProduct();
+                editBtn.setStyle(null);
+                old = false;
             }
             else {
                 Product product = create();
@@ -58,7 +60,6 @@ public class MainController implements Initializable {
             clearFields();
             saveToFile();
             showProducts();
-            old = false;
         }
         catch(Exception ex) {
             // TODO: Ausgabe in die GUI
@@ -90,6 +91,7 @@ public class MainController implements Initializable {
             count.setText(selected.getCount() + ""); // Muss als Text eingefügt werden
             price.setText(selected.getPrice() + ""); // Muss als Text eingefügt werden
             old = true;
+            editBtn.setStyle("-fx-background-color: #00ff00");
         }
     }
 
@@ -130,6 +132,7 @@ public class MainController implements Initializable {
         // setItems: gibt die products ArrayList in der Tabelle aus
         // observableList: Tabell verlangt eine ObservableList, daher muss die ArrayList umgewandelt werden
         productTbl.setItems(FXCollections.observableList(products));
+        productTbl.refresh();
     }
 
     private void saveToFile() {

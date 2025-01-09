@@ -51,6 +51,6 @@
         </columns>
       </TableView>
       <Button layoutX="199.0" layoutY="355.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
-      <Button layoutX="199.0" layoutY="322.0" mnemonicParsing="false" onAction="#edit" prefHeight="25.0" prefWidth="54.0" text="Edit" />
+      <Button fx:id="editBtn" layoutX="199.0" layoutY="322.0" mnemonicParsing="false" onAction="#edit" prefHeight="25.0" prefWidth="54.0" text="Edit" />
    </children>
 </AnchorPane>
